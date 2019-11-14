@@ -35,7 +35,8 @@ chown -R ${USER}:${USER_GRP} /app/repmgr
 
 # Change user
 su - ${USER}
-./configure
+cd /Source/repmgr-4.3.0
+./configure --prefix=/app/repmgr
 make install
 ```
 
