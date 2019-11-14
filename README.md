@@ -107,7 +107,7 @@ psql -U repmgr -c 'select * from repmgr.nodes' -d repmgr
 
 ### 2.7 Restart PostgreSQL
 ```bash
-/etc/init.d//etc/init.d/postgres_${USER} restart
+/etc/init.d/etc/init.d/postgres_${USER} restart
 ```
 ---
 
