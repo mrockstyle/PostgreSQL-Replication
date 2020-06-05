@@ -29,6 +29,7 @@
 ใช้ตำสั่ง psql เข้าไปใน postgresql shell
 ```
 su - ${USER}
+/etc/init.d/postgresql_${USER} stop
 
 drop database zbch_trn_db;
 drop database core_reports;
@@ -47,6 +48,8 @@ unlink $PG_DATA_DIRECTORY/global
 
 mv /data/postgresql/${USER}/db/base /data/postgresql/${USER}/etc/data/
 mv /data/postgresql/${USER}/db/global /data/postgresql/${USER}/etc/data/
+
+/etc/init.d/postgresql_${USER} start
 ```
 
 
