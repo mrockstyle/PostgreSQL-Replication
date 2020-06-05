@@ -23,6 +23,33 @@
 3. [Slave Setup](#3-slave-setup)
 
 
+
+## Requirement
+### 1. Drop old database
+ใช้ตำสั่ง psql เข้าไปใน postgresql shell
+```
+su - ${USER}
+
+drop database zbch_trn_db;
+drop database core_reports;
+
+drop tablespace dbspace_zbch_trn_db;
+drop tablespace dbspace_core_reports;
+
+sed -i 's/zbch_trn_db/postgres' ~/.bashrc
+source ~/.bashrc
+```
+### 2. Change postgresql structure
+```
+# ตัวอย่าง $PG_DATA_DIRECTORY -> /data/postgresql/${USER}/etc/data
+unlink $PG_DATA_DIRECTORY/base
+unlink $PG_DATA_DIRECTORY/global
+
+mv /data/postgresql/${USER}/db/base /data/postgresql/${USER}/etc/data/
+mv /data/postgresql/${USER}/db/global /data/postgresql/${USER}/etc/data/
+```
+
+
 ## 1. repmgr Setup
 ### 1.1 Install repmgr
 ```bash
