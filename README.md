@@ -125,20 +125,21 @@ max_wal_senders = 50
 hot_standby = on
 ```
 
-### 2.5 Register primary node
+### 2.5 Restart PostgreSQL
+```bash
+/etc/init.d/etc/init.d/postgres_${USER} restart
+```
+
+### 2.6 Register primary node
 ```bash
 repmgr -f /app/repmgr/repmgr.conf primary register
 ```
 
-### 2.6 Check cluster
+### 2.7 Check cluster
 ```bash
 psql -U repmgr -c 'select * from repmgr.nodes' -d repmgr
 ```
 
-### 2.7 Restart PostgreSQL
-```bash
-/etc/init.d/etc/init.d/postgres_${USER} restart
-```
 ---
 
 ## 3. Slave Setup
@@ -164,6 +165,9 @@ log_file=/app/repmgr/repmgr.log" > /app/repmgr/repmgr.conf
 
 ### 3.3 Clone data from Primary
 ```bash
+# Delete data on slave
+rm -rf /DB/postgresql/${USER}/etc/data
+# Clone
 repmgr -h ${M_IP} -U repmgr -d repmgr -f /app/repmgr/repmgr.conf standby clone
 ```
 
